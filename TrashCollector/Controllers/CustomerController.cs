@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,17 +33,21 @@ namespace TrashCollector.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
-            return View();
+            Customer customer = new Customer();
+            return View(customer);
         }
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Customer customer)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                string userId = User.Identity.GetUserId();
+                customer.ApplicationId = userId;
+                context.Customer.Add(customer);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
