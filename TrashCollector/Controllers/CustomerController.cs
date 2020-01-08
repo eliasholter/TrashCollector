@@ -11,7 +11,7 @@ namespace TrashCollector.Controllers
     public class CustomerController : Controller
     {
         ApplicationDbContext context;
-
+        
         public CustomerController()
         {
             context = new ApplicationDbContext();
@@ -24,9 +24,10 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customer/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            Customer customer = context.Customer.Find(id);
+            string userId = User.Identity.GetUserId();
+            var customer = context.Customer.Where(c => c.ApplicationId == userId).SingleOrDefault();
             return View(customer);
         }
 
