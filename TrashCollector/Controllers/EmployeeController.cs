@@ -46,7 +46,7 @@ namespace TrashCollector.Controllers
                 employee.ApplicationId = userId;
                 context.Employees.Add(employee);
                 context.SaveChanges();
-                return RedirectToAction("Index", "Employee");
+                return RedirectToAction("Index";
             }
             catch
             {
