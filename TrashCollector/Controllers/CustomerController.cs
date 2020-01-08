@@ -60,18 +60,31 @@ namespace TrashCollector.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Customer customer = context.Customer.Find(id);
+            return View(customer);
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Customer customer)
         {
             try
             {
                 // TODO: Add update logic here
+                Customer updatedCustomer = context.Customer.Find(id);
+                updatedCustomer.FirstName = customer.FirstName;
+                updatedCustomer.LastName = customer.LastName;
+                updatedCustomer.PickUpDay = customer.PickUpDay;
+                updatedCustomer.ExtraPickUpDay = customer.ExtraPickUpDay;
+                updatedCustomer.StreetAddress = customer.StreetAddress;
+                updatedCustomer.City = customer.City;
+                updatedCustomer.State = customer.State;
+                updatedCustomer.ZipCode = customer.ZipCode;
+                updatedCustomer.SuspendStart = customer.SuspendStart;
+                updatedCustomer.SuspendEnd = customer.SuspendEnd;
+                context.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             catch
             {
@@ -80,7 +93,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customer/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete()
         {
             return View();
         }

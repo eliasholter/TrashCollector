@@ -23,6 +23,7 @@ namespace TrashCollector.Models
         public string ExtraPickUpDay { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public int ZipCode { get; set; }
         public double Balance { get; set; }
         public string SuspendStart { get; set; }
