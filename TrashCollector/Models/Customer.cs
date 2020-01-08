@@ -33,7 +33,7 @@ namespace TrashCollector.Models
         public string State { get; set; }
         [Display(Name = "Zip Code:")]
         public int ZipCode { get; set; }
-        [Display(Name = "Balance: $")]
+        [Display(Name = "Balance:")]
         public double Balance { get; set; }
         [Display(Name = "Begin Service Pause:")]
         public string SuspendStart { get; set; }

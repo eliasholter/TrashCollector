@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TrashCollector.Models.Customer>
 
 @{
-    ViewBag.Title = "Employee Home";
+    ViewBag.Title = "Sunday Route";
 }
 
-<h2>Your Route For The Day</h2>
+<h2>Your Route For Sunday</h2>
 
 <table class="table">
     <tr>
@@ -69,3 +69,6 @@
 }
 
 </table>
+<div>
+    @Html.ActionLink("Back to List", "Details")
+</div>
