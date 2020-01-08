@@ -17,13 +17,11 @@ namespace TrashCollector.Controllers
             context = new ApplicationDbContext();
         }
 
-        // GET: Customer
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Customer/Details/5
         public ActionResult Details()
         {
             string userId = User.Identity.GetUserId();
@@ -31,20 +29,17 @@ namespace TrashCollector.Controllers
             return View(customer);
         }
 
-        // GET: Customer/Create
         public ActionResult Create()
         {
             Customer customer = new Customer();
             return View(customer);
         }
 
-        // POST: Customer/Create
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
             try
             {
-                // TODO: Add insert logic here
                 string userId = User.Identity.GetUserId();
                 customer.ApplicationId = userId;
                 context.Customer.Add(customer);
@@ -57,20 +52,17 @@ namespace TrashCollector.Controllers
             }
         }
 
-        // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
             Customer customer = context.Customer.Find(id);
             return View(customer);
         }
 
-        // POST: Customer/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, Customer customer)
         {
             try
             {
-                // TODO: Add update logic here
                 Customer updatedCustomer = context.Customer.Find(id);
                 updatedCustomer.FirstName = customer.FirstName;
                 updatedCustomer.LastName = customer.LastName;
