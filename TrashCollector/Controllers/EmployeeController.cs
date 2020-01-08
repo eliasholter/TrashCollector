@@ -1,13 +1,22 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrashCollector.Models;
 
 namespace TrashCollector.Controllers
 {
     public class EmployeeController : Controller
     {
+        ApplicationDbContext context;
+
+        public EmployeeController()
+        {
+            context = new ApplicationDbContext();
+        }
+
         // GET: Employee
         public ActionResult Index()
         {
@@ -23,17 +32,21 @@ namespace TrashCollector.Controllers
         // GET: Employee/Create
         public ActionResult Create()
         {
-            return View();
+            Employee employee = new Employee();
+            return View(employee);
         }
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Employee employee)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                string userId = User.Identity.GetUserId();
+                employee.ApplicationId = userId;
+                context.Employees.Add(employee);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
