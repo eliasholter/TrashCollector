@@ -86,6 +86,15 @@ namespace TrashCollector.Controllers
             }
         }
 
+        public ActionResult CustomerLocation(int id)
+        {
+            Customer customer = context.Customer.Find(id);
+            GeoCoderAddress geoCoder = new GeoCoderAddress();
+            var splitAddress = customer.StreetAddress.Split(new[] { ' ' }, 4);
+            geoCoder.address += splitAddress[0] + "+" + splitAddress[1] + "+" + splitAddress[2] + "+" + splitAddress[3] + "+" + customer.City + "+" + customer.State;
+            return View(geoCoder);
+        }
+
         public ActionResult Delete(int id)
         {
             return View();

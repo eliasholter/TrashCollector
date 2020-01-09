@@ -197,6 +197,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\GeoCoderAddress.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -275,6 +276,8 @@
     <Content Include="Views\Employee\Thursday.cshtml" />
     <Content Include="Views\Employee\Wednesday.cshtml" />
     <Content Include="Views\Employee\Tuesday.cshtml" />
+    <Content Include="Views\Employee\OldCustomerLocation.cshtml" />
+    <Content Include="Views\Employee\CustomerLocation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
