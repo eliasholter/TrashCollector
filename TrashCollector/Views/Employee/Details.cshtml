@@ -77,14 +77,17 @@
 
 </table>
 <div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">View Specific Pick-Up Day</button>
-    <div class="dropdown-menu">
-        @Html.ActionLink("Monday", "Monday", "Employee")
-        @Html.ActionLink("Tuesday", "Tuesday", "Employee")
-        @Html.ActionLink("Wednesday", "Wednesday", "Employee")
-        @Html.ActionLink("Thursday", "Thursday", "Employee")
-        @Html.ActionLink("Friday", "Friday", "Employee")
-        @Html.ActionLink("Saturday", "Saturday", "Employee")
-        @Html.ActionLink("Sunday", "Sunday", "Employee")
-    </div>
+    <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select Day
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="select-day">
+        <li><a class="dropdown-item" href="/Employee/Monday">Monday</a></li>
+        <li><a class="dropdown-item" href="/Employee/Tuesday">Tuesday</a></li>
+        <li><a class="dropdown-item" href="/Employee/Wednesday">Wednesday</a></li>
+        <li><a class="dropdown-item" href="/Employee/Thursday">Thursday</a></li>
+        <li><a class="dropdown-item" href="/Employee/Friday">Friday</a></li>
+        <li><a class="dropdown-item" href="/Employee/Saturday">Saturday</a></li>
+        <li><a class="dropdown-item" href="/Employee/Sunday">Sunday</a></li>
+    </ul>
 </div>

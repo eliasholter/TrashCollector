@@ -80,15 +80,25 @@ namespace TrashCollector.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    //if (User.IsInRole()
-                    //{
-                    //    return RedirectToAction("Index", "Employee");
-                    //}
-                    //else
-                    //{
-                    //    return RedirectToLocal(returnUrl);
-                    //}
-                    return RedirectToLocal(returnUrl);
+                    var user = await UserManager.FindAsync(model.UserName, model.Password);
+                    var roles = await UserManager.GetRolesAsync(user.Id);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if (roles.Contains("Employee"))
+                    {
+                        return RedirectToAction("Index", "Employee");
+                    }
+                    else if (roles.Contains("Customer"))
+                    {
+                        return RedirectToAction("Index", "Customer");
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
