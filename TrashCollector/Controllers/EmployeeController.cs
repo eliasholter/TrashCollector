@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrashCollector.Models;
@@ -89,10 +90,19 @@ namespace TrashCollector.Controllers
         public ActionResult CustomerLocation(int id)
         {
             Customer customer = context.Customer.Find(id);
-            GeoCoderAddress geoCoder = new GeoCoderAddress();
+            GeoCoderAddress geoCoderInfo = new GeoCoderAddress();
             var splitAddress = customer.StreetAddress.Split(new[] { ' ' }, 4);
-            geoCoder.address += splitAddress[0] + "+" + splitAddress[1] + "+" + splitAddress[2] + "+" + splitAddress[3] + "+" + customer.City + "+" + customer.State;
-            return View(geoCoder);
+            geoCoderInfo.address += splitAddress[0] + "+" + splitAddress[1] + "+" + splitAddress[2] + "+" + splitAddress[3] + "+" + customer.City + "+" + customer.State;
+            string url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + geoCoderInfo.address + "&key=" + PrivateKeys.key1;
+
+            WebRequest request = WebRequest.Create(url);
+
+            using (WebResponse response = (HttpWebResponse)request.GetResponse())
+
+            geoCoderInfo.latitudeValue = dtCoordinates.Rows[0]["Latitude"];
+            geoCoderInfo.longitudeValue = dtCoordinates.Rows[0]["Longitude"];
+
+            return View();
         }
 
         public ActionResult Delete(int id)
