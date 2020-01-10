@@ -23,7 +23,7 @@ namespace TrashCollector.Models
         public string LastName { get; set; }
         [Display(Name = "Weekly Pick-Up Day:")]
         public string PickUpDay { get; set; }
-        [Display(Name = "Additional Pick-Up:")]
+        [Display(Name = "Additional Pick-Up (mm/dd/yyyy):")]
         public string ExtraPickUpDay { get; set; }
         [Display(Name = "Street Address:")]
         public string StreetAddress { get; set; }
@@ -35,9 +35,9 @@ namespace TrashCollector.Models
         public int ZipCode { get; set; }
         [Display(Name = "Balance:")]
         public double Balance { get; set; }
-        [Display(Name = "Begin Service Pause:")]
+        [Display(Name = "Begin Service Pause (mm/dd/yyyy):")]
         public string SuspendStart { get; set; }
-        [Display(Name = "End Service Pause:")]
+        [Display(Name = "End Service Pause (mm/dd/yyyy):")]
         public string SuspendEnd { get; set; }
         [Display(Name = "Trash Has Been Collected:")]
         public bool PickUpConfirmation { get; set; }

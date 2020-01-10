@@ -277,7 +277,6 @@
     <Content Include="Views\Employee\Thursday.cshtml" />
     <Content Include="Views\Employee\Wednesday.cshtml" />
     <Content Include="Views\Employee\Tuesday.cshtml" />
-    <Content Include="Views\Employee\OldCustomerLocation.cshtml" />
     <Content Include="Views\Employee\CustomerLocationAsync.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
