@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using TrashCollector.Models;
@@ -87,20 +92,23 @@ namespace TrashCollector.Controllers
             }
         }
 
-        public ActionResult CustomerLocation(int id)
+        public async System.Threading.Tasks.Task<ActionResult> CustomerLocationAsync(int id)
         {
             Customer customer = context.Customer.Find(id);
             GeoCoderAddress geoCoderInfo = new GeoCoderAddress();
             var splitAddress = customer.StreetAddress.Split(new[] { ' ' }, 4);
-            geoCoderInfo.address += splitAddress[0] + "+" + splitAddress[1] + "+" + splitAddress[2] + "+" + splitAddress[3] + "+" + customer.City + "+" + customer.State;
+            geoCoderInfo.address += splitAddress[0] + "+" + splitAddress[1] + "+" + splitAddress[2] + "+" + splitAddress[3] + ",+" + customer.City + ",+" + customer.State;
             string url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + geoCoderInfo.address + "&key=" + PrivateKeys.key1;
-
-            WebRequest request = WebRequest.Create(url);
-
-            using (WebResponse response = (HttpWebResponse)request.GetResponse())
-
-            geoCoderInfo.latitudeValue = dtCoordinates.Rows[0]["Latitude"];
-            geoCoderInfo.longitudeValue = dtCoordinates.Rows[0]["Longitude"];
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            string jsonResult = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                GeoResult postManJSON = JsonConvert.DeserializeObject<GeoResult>(jsonResult);
+                geoCoderInfo.latitudeValue = postManJSON.results[0].geometry.location.lat;
+                geoCoderInfo.longitudeValue = postManJSON.results[0].geometry.location.lng;
+                return View(geoCoderInfo);
+            }
 
             return View();
         }

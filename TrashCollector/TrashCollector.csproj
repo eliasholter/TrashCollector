@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -98,9 +101,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -199,6 +199,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\GeoCoderAddress.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JSon.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PrivateKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -264,7 +265,6 @@
     <Content Include="Views\Role\AddRole.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
@@ -278,7 +278,8 @@
     <Content Include="Views\Employee\Wednesday.cshtml" />
     <Content Include="Views\Employee\Tuesday.cshtml" />
     <Content Include="Views\Employee\OldCustomerLocation.cshtml" />
-    <Content Include="Views\Employee\CustomerLocation.cshtml" />
+    <Content Include="Views\Employee\CustomerLocationAsync.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

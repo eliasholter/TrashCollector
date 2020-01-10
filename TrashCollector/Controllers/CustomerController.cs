@@ -44,7 +44,7 @@ namespace TrashCollector.Controllers
                 customer.ApplicationId = userId;
                 context.Customer.Add(customer);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
